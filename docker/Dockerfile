@@ -7,6 +7,7 @@ RUN apt-get update && apt-get install -y \
     ros-humble-joint-state-publisher-gui \
     ros-humble-ros-gz \
     ros-humble-gz-ros2-control \
+    ros-humble-teleop-twist-keyboard \
     python3-colcon-common-extensions \
     python3-rosdep \
     git \
