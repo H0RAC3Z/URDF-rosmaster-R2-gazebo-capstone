@@ -1,0 +1,17 @@
+.git
+.gitignore
+
+build
+install
+log
+
+.ros
+.vscode
+
+*.zip
+*.tar
+*.tar.gz
+
+__pycache__
+*.pyc
+*.egg-info

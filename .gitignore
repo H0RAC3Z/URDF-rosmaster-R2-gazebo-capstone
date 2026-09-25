@@ -1,0 +1,29 @@
+# ROS 2 / colcon
+build/
+install/
+log/
+
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+
+# ROS / tooling
+.ros/
+.vscode/
+
+# Docker
+*.tar
+*.tar.gz
+
+# OS/editor files
+.DS_Store
+Thumbs.db
+*~
+
+# Local environment files
+.env
+.env.*
+
+# Large downloaded archives
+*.zip
