@@ -1,12 +1,9 @@
 ## Quick Setup
 
 ### Clone repository
-```bash
+```
 git clone git@github.com:H0RAC3Z/URDF-rosmaster-R2-gazebo-capstone.git
-```
-```java
-System.out.println("Hello");
-```
+```   
 ```
 cd URDF-rosmaster-R2-gazebo-capstone/
 ```   
