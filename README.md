@@ -1,6 +1,6 @@
 # Quick Setup
 
-### Clone repository
+### 1. Clone repository
 ```
 git clone git@github.com:H0RAC3Z/URDF-rosmaster-R2-gazebo-capstone.git
 ```   
@@ -8,17 +8,17 @@ git clone git@github.com:H0RAC3Z/URDF-rosmaster-R2-gazebo-capstone.git
 cd URDF-rosmaster-R2-gazebo-capstone/
 ```   
 
-### Build image
+### 2. Build image
 ```
 docker build -t r2-ros2-humble -f docker/Dockerfile .
 ```   
 
-### Give docker perms to the X display server
+### 3. Give docker perms to the X display server
 ```
 xhost +local:docker
 ```   
 
-### Run container
+### 4. Run container
 ```
 docker run -d \
   --name r2-ros2 \
@@ -30,12 +30,12 @@ docker run -d \
   r2-ros2-humble
 ```   
 
-### Entry into bash on container
+### 5. Entry into bash on container
 ```
 docker exec -it r2-ros2 bash
 ```   
 
-### Set up environment
+### 6. Set up environment
 ```
 source /opt/ros/humble/setup.bash
 
@@ -47,17 +47,17 @@ export IGN_GAZEBO_RESOURCE_PATH=/root/r2_ros2/install/yahboomcar_description/sha
 export GZ_SIM_RESOURCE_PATH=/root/r2_ros2/install/yahboomcar_description/share:$GZ_SIM_RESOURCE_PATH
 ```   
 
-### Open gazebo on Docker
+### 7. Open gazebo on Docker
 ```
 ign gazebo -r empty.sdf
 ```   
 
-### Open another terminal and enter the docker container
+### 8. Open another terminal and enter the docker container
 ```
 docker exec -it r2-ros2 bash
 ```   
 
-### Spawn the robot in that terminal that you opened
+### 9. Spawn the robot in that terminal that you opened
 ```
 ros2 run ros_gz_sim create \
   -world empty \
@@ -68,22 +68,22 @@ ros2 run ros_gz_sim create \
 
 # Rerunning
 
-### Open another terminal inside the image
+### 1. Open another terminal inside the image
 ```
 docker exec -it r2-ros2 bash
 ```   
 
-### Launch Gazebo
+### 2. Launch Gazebo
 ```
 ign gazebo -r empty.sdf
 ```   
 
-### Open another terminal and open another bash in the container
+### 3. Open another terminal and open another bash in the container
 ```
 docker exec -it r2-ros2 bash
 ```   
 
-### Spawn robot in that new terminal
+### 4. Spawn robot in that new terminal
 ```
 ros2 run ros_gz_sim create \
   -world empty \
@@ -93,36 +93,36 @@ ros2 run ros_gz_sim create \
 ```   
 
 ## Steering
-### Single command to configure speed and wheel turn
+### 1. Single command to configure speed and wheel turn
 ```
 ros2 topic pub --once /cmd_vel geometry_msgs/msg/Twist "{linear: {x: 0.3}, angular: {z: 0.5}}"
 ```   
 linear.x = forward speed in m/s (negative = reverse)   
 angular.z = desired turn rate; positive = left, negative = right. The plugin converts this into a steering angle internally using the wheelbase we gave it.   
 
-### Continuous command
+### 2. Continuous command
 ```
 ros2 topic pub -r 10 /cmd_vel geometry_msgs/msg/Twist "{linear: {x: 0.3}, angular: {z: 0.0}}"
 ```   
 Empty {} default all parameters to 0.   
 
-### Keyboard controller
+### 3. Keyboard controller
 ```
 ros2 run teleop_twist_keyboard teleop_twist_keyboard
 ```   
 The middle column is “straight” steering with the top key being forward and bottom being backward.
 
-### Testing the data output of joint radians (BROKEN FOR NOW)
+### 4. Testing the data output of joint radians (BROKEN FOR NOW)
 ```
 ros2 topic echo /vehicle/steering_angle_rad
 ```   
 
-### Testing speed (BROKEN FOR NOW)
+### 5. Testing speed (BROKEN FOR NOW)
 ```
 ros2 topic echo /vehicle/speed_mps
 ```   
 
-### Running the services/topics (REQUIRED TO TEST STEERING)
+### 6. Running the services/topics (REQUIRED TO TEST STEERING)
 ```
 ros2 run ros_gz_bridge parameter_bridge \
   /clock@rosgraph_msgs/msg/Clock[ignition.msgs.Clock \
