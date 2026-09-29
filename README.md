@@ -1,7 +1,7 @@
 ## Quick Setup
 
 ### Clone repository
-```git
+```bash
 git clone git@github.com:H0RAC3Z/URDF-rosmaster-R2-gazebo-capstone.git
 ```   
 ```
