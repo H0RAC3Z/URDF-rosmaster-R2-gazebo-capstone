@@ -1,4 +1,4 @@
-## Quick Setup
+# Quick Setup
 
 ### Clone repository
 ```
@@ -66,7 +66,7 @@ ros2 run ros_gz_sim create \
   -z 0.2
 ```   
 
-## Rerunning
+# Rerunning
 
 ### Open another terminal inside the image
 ```
