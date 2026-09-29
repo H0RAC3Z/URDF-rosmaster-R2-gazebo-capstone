@@ -68,22 +68,33 @@ ros2 run ros_gz_sim create \
 
 # Rerunning
 
-### 1. Open another terminal inside the image
+### 1. Start the docker container assuming it has shut down since the last time used
+```
+docker start -ai r2-ros2
+```   
+Then Ctrl+C
+
+### 2. Give docker proper permissions
+```
+xhost +local:docker
+```   
+
+### 3. Open another terminal inside the image
 ```
 docker exec -it r2-ros2 bash
 ```   
 
-### 2. Launch Gazebo
+### 4. Launch Gazebo
 ```
 ign gazebo -r empty.sdf
 ```   
 
-### 3. Open another terminal and open another bash in the container
+### 5. Open another terminal and open another bash in the container
 ```
 docker exec -it r2-ros2 bash
 ```   
 
-### 4. Spawn robot in that new terminal
+### 6. Spawn robot in that new terminal
 ```
 ros2 run ros_gz_sim create \
   -world empty \
@@ -115,28 +126,26 @@ ros2 topic pub --once /cmd_vel geometry_msgs/msg/Twist "{linear: {x: 0.3}, angul
 linear.x = forward speed in m/s (negative = reverse)   
 angular.z = desired turn rate; positive = left, negative = right. The plugin converts this into a steering angle internally using the wheelbase we gave it.   
 
-### 3. Continuous command
+### 2. Continuous command
 ```
 ros2 topic pub -r 10 /cmd_vel geometry_msgs/msg/Twist "{linear: {x: 0.3}, angular: {z: 0.0}}"
 ```   
 Empty {} default all parameters to 0.   
 
-### 4. Keyboard controller
+### 2. Keyboard controller
 ```
 ros2 run teleop_twist_keyboard teleop_twist_keyboard
 ```   
 The middle column is “straight” steering with the top key being forward and bottom being backward.
 
-### 5. Testing the data output of joint radians (BROKEN FOR NOW)
+### 3. Testing the data output of joint radians
 ```
 ros2 topic echo /vehicle/steering_angle_rad
 ```   
 
-### 6. Testing speed (BROKEN FOR NOW)
+### 4. Testing speed
 ```
 ros2 topic echo /vehicle/speed_mps
 ```   
 
-
-
-
+exit can be used to exit the docker container terminal.
