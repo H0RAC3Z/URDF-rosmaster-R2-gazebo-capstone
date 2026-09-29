@@ -93,36 +93,7 @@ ros2 run ros_gz_sim create \
 ```   
 
 ## Steering
-### 1. Single command to configure speed and wheel turn
-```
-ros2 topic pub --once /cmd_vel geometry_msgs/msg/Twist "{linear: {x: 0.3}, angular: {z: 0.5}}"
-```   
-linear.x = forward speed in m/s (negative = reverse)   
-angular.z = desired turn rate; positive = left, negative = right. The plugin converts this into a steering angle internally using the wheelbase we gave it.   
-
-### 2. Continuous command
-```
-ros2 topic pub -r 10 /cmd_vel geometry_msgs/msg/Twist "{linear: {x: 0.3}, angular: {z: 0.0}}"
-```   
-Empty {} default all parameters to 0.   
-
-### 3. Keyboard controller
-```
-ros2 run teleop_twist_keyboard teleop_twist_keyboard
-```   
-The middle column is “straight” steering with the top key being forward and bottom being backward.
-
-### 4. Testing the data output of joint radians (BROKEN FOR NOW)
-```
-ros2 topic echo /vehicle/steering_angle_rad
-```   
-
-### 5. Testing speed (BROKEN FOR NOW)
-```
-ros2 topic echo /vehicle/speed_mps
-```   
-
-### 6. Running the services/topics (REQUIRED TO TEST STEERING)
+### 1. Running the services/topics (REQUIRED TO TEST STEERING)
 ```
 ros2 run ros_gz_bridge parameter_bridge \
   /clock@rosgraph_msgs/msg/Clock[ignition.msgs.Clock \
@@ -135,6 +106,37 @@ ros2 run ros_gz_bridge parameter_bridge \
   -r /model/yahboom_r2_gazebo/odometry:=/odom \
   -r /model/yahboom_r2_gazebo/tf:=/tf \
   -r /world/empty/model/yahboom_r2_gazebo/joint_state:=/joint_states
+```   
+
+### 2. Single command to configure speed and wheel turn
 ```
+ros2 topic pub --once /cmd_vel geometry_msgs/msg/Twist "{linear: {x: 0.3}, angular: {z: 0.5}}"
+```   
+linear.x = forward speed in m/s (negative = reverse)   
+angular.z = desired turn rate; positive = left, negative = right. The plugin converts this into a steering angle internally using the wheelbase we gave it.   
+
+### 3. Continuous command
+```
+ros2 topic pub -r 10 /cmd_vel geometry_msgs/msg/Twist "{linear: {x: 0.3}, angular: {z: 0.0}}"
+```   
+Empty {} default all parameters to 0.   
+
+### 4. Keyboard controller
+```
+ros2 run teleop_twist_keyboard teleop_twist_keyboard
+```   
+The middle column is “straight” steering with the top key being forward and bottom being backward.
+
+### 5. Testing the data output of joint radians (BROKEN FOR NOW)
+```
+ros2 topic echo /vehicle/steering_angle_rad
+```   
+
+### 6. Testing speed (BROKEN FOR NOW)
+```
+ros2 topic echo /vehicle/speed_mps
+```   
+
+
 
 
