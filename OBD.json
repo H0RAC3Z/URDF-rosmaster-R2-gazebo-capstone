@@ -1,0 +1,23 @@
+{
+  "Vehicle": {
+    "children": {
+      "Speed": {
+        "datatype": "float",
+        "description": "Vehicle speed from ROS topic /vehicle/speed_mps; converted to km/h for VSS Vehicle.Speed.",
+        "type": "sensor",
+        "unit": "km/h",
+        "uuid": "071fe750374d4febb78306838b3013e5"
+      },
+      "SteeringAngle": {
+        "datatype": "float",
+        "description": "Average front steering angle from ROS topic /vehicle/steering_angle_rad; positive is left",
+        "type": "sensor",
+        "unit": "rad",
+        "uuid": "ab2b34d042c3403096038159e5f5d70c"
+      }
+    },
+    "description": "Vehicle state published by the ROS 2 vehicle state publisher.",
+    "type": "branch",
+    "uuid": "948c6da1e5714fa7907cae053b09b826"
+  }
+}

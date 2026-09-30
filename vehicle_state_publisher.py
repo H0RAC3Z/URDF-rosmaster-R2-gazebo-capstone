@@ -15,11 +15,10 @@ math joint_states doesn't give you for free -- wheel angular velocity (rad/s)
 consumer gets one clean number for each.
 
 Run (with Gazebo + bridge already running):
-    ros2 run --prefix 'python3' rclpy vehicle_state_publisher.py   # not how ros2 run works, see below
     python3 vehicle_state_publisher.py                             # simplest: just run it directly
 
 No package/build step is required to just run this directly with rclpy
-installed (it is, inside the ROS 2 Humble container).
+installed (it is installed inside the ROS 2 Humble container).
 """
 import rclpy
 from rclpy.node import Node

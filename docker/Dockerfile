@@ -10,9 +10,16 @@ RUN apt-get update && apt-get install -y \
     ros-humble-teleop-twist-keyboard \
     python3-colcon-common-extensions \
     python3-rosdep \
+    python3-pip \
+    python3-venv \
     git \
     nano \
     && rm -rf /var/lib/apt/lists/*
+
+RUN python3 -m venv --system-site-packages /opt/kuksa-venv && \
+    /opt/kuksa-venv/bin/pip install --no-cache-dir kuksa-client
+
+ENV PATH="/opt/kuksa-venv/bin:${PATH}"
 
 WORKDIR /root/r2_ros2
 
